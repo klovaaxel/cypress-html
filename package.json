@@ -1,0 +1,47 @@
+{
+    "name": "cypress-ct-html",
+    "version": "1.0.0",
+    "description": "Cypress Component Testing for plain HTML/CSS/JS and Web Components",
+    "license": "MIT",
+    "scripts": {
+        "build": "bun run build:mount && bun run build:definition",
+        "build:mount": "tsc --project tsconfig.mount.json",
+        "build:definition": "tsc --project tsconfig.definition.json",
+        "dev": "cypress open --component",
+        "test": "cypress run --component"
+    },
+    "exports": {
+        "node": "./dist/definition.js",
+        "default": "./dist/index.js"
+    },
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "keywords": [
+        "cypress",
+        "testing",
+        "html",
+        "webcomponents",
+        "component",
+        "cypress-ct",
+        "cypress-ct-html",
+        "test"
+    ],
+    "dependencies": {
+        "@cypress/mount-utils": "^4.0.0"
+    },
+    "devDependencies": {
+        "cypress": "^13.0.0",
+        "typescript": "^5.1.6",
+        "vite": "^5.3.5"
+    },
+    "peerDependencies": {
+        "cypress": ">=10.6.0"
+    },
+    "author": {
+        "name": "Axel Karlsson",
+        "aka": "klovaaxel"
+    },
+    "repository": "https://github.com/klovaaxeel/cypress-webcomponents"
+}
