@@ -1,6 +1,6 @@
 {
     "name": "cypress-ct-html",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Cypress Component Testing for plain HTML/CSS/JS and Web Components",
     "license": "MIT",
     "scripts": {
@@ -43,5 +43,5 @@
         "name": "Axel Karlsson",
         "aka": "klovaaxel"
     },
-    "repository": "https://github.com/klovaaxeel/cypress-webcomponents"
+    "repository": "https://github.com/klovaaxeel/cypress-html"
 }
