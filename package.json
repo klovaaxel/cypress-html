@@ -1,6 +1,6 @@
 {
     "name": "cypress-ct-html",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Cypress Component Testing for plain HTML/CSS/JS and Web Components",
     "license": "MIT",
     "scripts": {

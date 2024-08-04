@@ -6,8 +6,20 @@ function cleanup() {
     dispose?.();
 }
 
-export function mount<T>(component: HTMLElement): Cypress.Chainable<JQuery<T>> {
+export function mount<T>(component: HTMLElement | string): Cypress.Chainable<JQuery<T>> {
     cleanup();
+
+    if (typeof component === "string") {
+        const template = document.createElement("template");
+        template.innerHTML = component;
+
+        if (template.content.children.length > 1)
+            throw new Error("The provided HTML string must have a single root element");
+
+        component = template.content.firstElementChild as HTMLElement;
+
+        if (!component) throw new Error("The provided HTML string was not able to be parsed into a valid HTML element");
+    }
 
     const root = getContainerEl();
     render(component, root);
@@ -46,6 +58,8 @@ declare global {
              * Mount your component into Cypress sandbox
              * @param component content (HTMLElement) to render
              * @type Name of the element to be mounted (as a string)
+             * @throws Error if the provided HTML string has more than one root element
+             * @throws Error if the provided HTML string is not able to be parsed into a valid HTML element
              */
             mount: typeof mount;
         }

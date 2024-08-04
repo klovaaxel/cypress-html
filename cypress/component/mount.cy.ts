@@ -1,6 +1,7 @@
+import { mount } from "../../src";
 import "./elements/counter-component";
 
-describe("mount", () => {
+describe("mount element", () => {
     it("should mount element", () => {
         cy.mount(document.createElement("counter-component"));
         cy.get("counter-component").should("exist");
@@ -21,6 +22,41 @@ describe("mount", () => {
 
         cy.mount(component1);
         cy.mount(component2);
+
+        cy.get("#mount1").should("not.exist");
+        cy.get("#mount2").should("exist");
+    });
+});
+
+describe("mount html string", () => {
+    it("should mount html string", () => {
+        const html = `
+            <counter-component></counter-component>
+        `;
+
+        cy.mount(html);
+        cy.get("counter-component").should("exist");
+        cy.get("counter-component").shadow().contains("Count is 0");
+    });
+
+    it("should return chainable reference to element", () => {
+        const html = `
+            <counter-component></counter-component>
+        `;
+        const counter = cy.mount<"counter-component">(html);
+        counter.shadow().contains("Count is 0");
+    });
+
+    it("should clean DOM if mount is called more than one time", () => {
+        const html1 = `
+            <div id="mount1"></div>
+        `;
+        const html2 = `
+            <div id="mount2"></div>
+        `;
+
+        cy.mount(html1);
+        cy.mount(html2);
 
         cy.get("#mount1").should("not.exist");
         cy.get("#mount2").should("exist");
